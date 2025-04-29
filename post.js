@@ -1,17 +1,10 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { google } = require('googleapis');
 const configEnv = require('./util/configureEnv');
 const configureOauth = require('./util/configureOauth');
 
 if (!process.env.PROD) {
     configEnv();
 }
-
-const oauth2Client = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.REDIRECT_URL
-);
 
 async function generateNews() {
     const SYSTEM_PROMPT = `
