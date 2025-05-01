@@ -1,5 +1,4 @@
 const express = require('express');
-const cron = require('node-cron');
 
 const redis = require('./lib/redis');
 const configEnv = require('./util/configureEnv');
@@ -13,11 +12,7 @@ if (!process.env.PROD) {
 }
 
 // app.get('/set', storeRefreshToken);
-// app.get('/create-post', createPost);
-
-
-const cronExpression = "0 8,14,20 * * *";
-cron.schedule(cronExpression, createPost);
+app.get('/create-post', createPost);
 
 redis.connect().then(function () {
     app.listen(process.env.PORT, function () {
