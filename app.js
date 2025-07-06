@@ -12,6 +12,9 @@ if (!process.env.PROD) {
 }
 
 // app.get('/set', storeRefreshToken);
+app.get('/', function (req,res) {
+    res.redirect('/create-post');
+})
 app.get('/create-post', createPost);
 
 // redis.connect().then(function () {
