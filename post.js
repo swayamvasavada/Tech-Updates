@@ -30,7 +30,7 @@ async function generateNews() {
     return result.response.text();
 }
 
-async function createPost() {
+async function createPost(req, res) {
     const postData = await generateNews();
     console.log(postData);
     
@@ -50,19 +50,20 @@ async function createPost() {
         content: str.content
     }
 
-    const accessToken = await configureOauth.getAccessToken();
-    console.log("Access token: ", accessToken);
+    // const accessToken = await configureOauth.getAccessToken();
+    // console.log("Access token: ", accessToken);
      
-    const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${process.env.BLOG_ID}/posts`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(post)
-    });
+    // const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${process.env.BLOG_ID}/posts`, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Authorization': `Bearer ${accessToken}`,
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(post)
+    // });
 
-    console.log(res);
+    // console.log(res);
+    res.json(post);
 }
 
 module.exports = createPost;
